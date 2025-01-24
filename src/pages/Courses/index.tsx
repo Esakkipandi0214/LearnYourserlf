@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from '@/components/LayoutComponents/Layout'
 // import CourseList from '@/components/CoursesComponents/CourseList'
 import SearchComponent from '@/components/common/SearchComponent'
-import CourseStats from '@/components/CoursesComponents/courseStats'
+import CourseStats from '../../components/CoursesComponents/CoursComponent'
 
 const index = () => {
   return (

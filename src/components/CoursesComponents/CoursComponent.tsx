@@ -1,9 +1,9 @@
 import React from 'react'
 
-const CourseStats = () => {
+const CoursComponent = () => {
   return (
-    <div className=' bg-transparent border rounded-lg border-gray-400 text-black shadow-2xl'>
-        <div>
+    <div className=' w-full bg-transparent border rounded-lg border-gray-400 text-black shadow-2xl'>
+        <div className=' w-[]'>
             <h1 className=' text-black'>Course Name</h1>
             <p>Python is a versatile, high-level programming language known for its simplicity and readability, making it ideal for beginners and professionals alike.</p>
         </div>
@@ -12,4 +12,4 @@ const CourseStats = () => {
   )
 }
 
-export default CourseStats
+export default CoursComponent
