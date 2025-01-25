@@ -66,18 +66,18 @@ const LessonsPage = () => {
         onSearch={handleSearch} // Handle search in the parent component
       />
       <div className="w-full px-5">
-        <h1 className="text-2xl font-bold mb-4">{selectedChapter.title}</h1>
+        <h1 className="text-2xl font-bold mb-4 text-black">{selectedChapter.title}</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredLessons.map((lesson: Lesson, index: number) => (
             <div
               key={index}
               className="bg-white shadow-md rounded-lg p-4 border border-gray-300"
             >
-              <h2 className="text-lg font-semibold">{lesson.name}</h2>
+              <h2 className="text-lg font-semibold text-gray-600">{lesson.name}</h2>
               <p className="text-sm text-gray-600 mt-2">{lesson.description}</p>
               <div className="mt-4 flex justify-between text-sm text-gray-500">
-                <span>⏱ Questions | {lesson.QuestionCount}</span>
-                <span>📘 Prpgress | {lesson.Progess}</span>
+                <span>📘 Questions | {lesson.QuestionCount}</span>
+                <span>⏱ Progress | {lesson.Progess} %</span>
               </div>
             </div>
           ))}

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { X } from "lucide-react";
 
 interface SearchComponentProps {
   data: string[]; // Accepts a list of data to display in the dropdown
@@ -49,6 +50,7 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ data, onSearch }) => 
   return (
     <div className="relative items-center flex gap-1 p-4 w-full max-w-sm">
       <div ref={dropdownRef} className="relative p-1 w-full max-w-sm">
+        <div className=" relative flex gap-3">
         <input
           type="text"
           value={searchQuery}
@@ -57,8 +59,12 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ data, onSearch }) => 
           placeholder="Search..."
           className="border rounded-lg px-4 text-black py-2 w-full"
         />
+        <div onClick={()=>{setSearchQuery("");setShowDropdown(false)}} className=" absolute top-3 p-0.5  flex justify-center items-center rounded-full bg-slate-400 right-2 ">
+         <X size={10} color=" black"  />
+         </div>
+        </div>
         {showDropdown && (
-          <ul className="absolute top-full left-0 w-full max-h-[200px] overflow-y-auto bg-white border rounded-lg shadow mt-1 z-10">
+          <ul className="absolute top-full left-0 w-full max-h-[100px] overflow-y-auto bg-white border rounded-lg shadow mt-1 z-10">
             {filteredData.map((item, index) => (
               <li
                 key={index}

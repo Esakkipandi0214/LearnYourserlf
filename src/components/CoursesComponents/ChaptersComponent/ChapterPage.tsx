@@ -48,17 +48,17 @@ const ChapterPage = ({ filteredChapters,CourseName }: { filteredChapters: Chapte
             >
               <div className="flex flex-col gap-6 bg-white p-2 rounded-lg h-full">
                 <div className="flex gap-10 items-center p-2">
-                  <h1 className="font-bold text-xl">SR</h1>
-                  <h2 className="font-semibold text-lg">{chapter.title}</h2>
+                  <h1 className="font-bold text-xl bg-black rounded-full p-1 text-white">SR</h1>
+                  <h2 className="font-medium text-black/80 text-lg">{chapter.title}</h2>
                 </div>
                 <div>
-                  <div className="flex gap-2">
-                    <p className="font-medium">Modules:</p>
-                    <p>{chapter.modules}</p>
+                  <div className="flex gap-2 ">
+                    <p className="font-medium text-black">Modules:</p>
+                    <p className="font-medium text-black/80" >{chapter.modules}</p>
                   </div>
                   <div className="flex gap-2">
-                    <p className="font-medium">Progress:</p>
-                    <p>{chapter.progress}</p>
+                    <p className="font-medium text-black">Progress:</p>
+                    <p className="font-medium text-black/80">{chapter.progress}</p>
                   </div>
                 </div>
               </div>
