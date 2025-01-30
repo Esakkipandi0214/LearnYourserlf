@@ -36,9 +36,9 @@ const Sidebar: React.FC<SideProps> = ({ isOpen }) => {
           <li className="flex rounded-lg hover:bg-gray-700 transition-colors  items-center gap-2 p-1 justify-start">
             <FaBook size={20} onClick={()=>handleRouteLink("Courses")} />
             {isOpen && (
-              <Link href="/Courses" legacyBehavior>
+              <Link href="/Mytest" legacyBehavior>
                 <a className=" flex items-center ">
-                  Courses
+                My Test
                 </a>
               </Link>
             )}
