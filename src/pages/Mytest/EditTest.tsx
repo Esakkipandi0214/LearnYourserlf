@@ -141,7 +141,7 @@ export default function EditTestPage() {
         })),
       };
 
-      const response = await fetch(`http://localhost:3000/api/tests/updateTest/${test._id}`, {
+      const response = await fetch(`/api/tests/updateTest/${test._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
