@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Layout from "@/components/LayoutComponents/Layout";
+import { Trash } from 'lucide-react';
+
 
 interface Question {
   text: string;
@@ -23,6 +25,9 @@ export default function EditTestPage() {
   const [loading, setLoading] = useState<boolean>(true);
   const [saving, setSaving] = useState<boolean>(false);
   const router = useRouter();
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
+  const [questionToDelete, setTestToDelete] = useState<string | null>(null);
   const { testId } = router.query;
 
   useEffect(() => {
@@ -136,6 +141,37 @@ export default function EditTestPage() {
     setSaving(false);
   };
 
+  const handleDeleteConfirmation = (testId: string) => {
+    setTestToDelete(testId);
+    setIsModalOpen(true);
+  };
+
+  const handleDelete = async () => {
+    if (!questionToDelete) return;
+
+    setIsDeleting(true);
+
+    try {
+      const response = await fetch(`/api/tests/deleteQuestion?testId=${test?._id}&&questionId=${questionToDelete}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete test');
+      }
+
+      alert('Test deleted successfully!');
+      setIsModalOpen(false); // Close the modal after deletion
+    } catch (error) {
+      console.error('Error deleting test:', error);
+      alert('Error deleting test');
+      setIsModalOpen(false); // Close the modal if there's an error
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
+
   if (loading) {
     return (
       <Layout>
@@ -163,6 +199,7 @@ export default function EditTestPage() {
 
         {test?.questions.map((question, qIndex) => (
           <div key={question._id} className="border p-4 rounded-lg space-y-3">
+            <div className=" flex gap-3  w-[97%]">
             <input
               type="text"
               value={question.text}
@@ -170,7 +207,14 @@ export default function EditTestPage() {
               className="w-full border p-2 text-black rounded-md"
               placeholder="Enter question text"
             />
-
+              <button
+                    onClick={() => handleDeleteConfirmation(question._id)}
+                    disabled={isDeleting}
+                    className=" text-white flex items-center justify-center rounded-lg px-1.5 py-1  bg-red-600"
+                  >
+                    <Trash size={20} /> {/* Trash is the delete icon */}
+                  </button>
+                  </div>
             <div className="grid gap-2">
               {question.options.map((option, oIndex) => (
                 <div key={oIndex} className="flex items-center space-x-2">
@@ -202,6 +246,31 @@ export default function EditTestPage() {
           </button>
         </div>
       </div>
+
+       {/* Confirmation Modal */}
+       {isModalOpen && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white rounded-lg p-6 w-96">
+            <h2 className="text-xl font-semibold text-gray-800">Are you sure?</h2>
+            <p className="text-gray-600 mt-2">This action cannot be undone.</p>
+            <div className="flex gap-4 mt-4">
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDelete}
+                disabled={isDeleting}
+                className="px-4 py-2 bg-red-600 text-white rounded-md"
+              >
+                {isDeleting ? "Deleting..." : "Delete"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </Layout>
   );
 }
