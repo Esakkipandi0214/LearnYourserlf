@@ -105,7 +105,7 @@ export default function TestCreator({ createdBy }: TestCreatorProps) {
     e.preventDefault()
 
     try {
-      const response = await fetch("http://localhost:3000/api/tests/create", {
+      const response = await fetch("/api/tests/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
