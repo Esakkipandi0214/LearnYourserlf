@@ -100,30 +100,6 @@ export default function EditTestPage() {
       return { ...prevTest, questions: updatedQuestions };
     });
   };
-  
-  
-  
-  const addQuestion = () => {
-    setTest((prevTest) => {
-      if (!prevTest) return null;
-      const newQuestion: Question = {
-        _id:"",
-        text: "",
-        options: ["", "", "", ""],
-        correctAnswers: [],
-        isMultipleChoice: false,
-      };
-      return { ...prevTest, questions: [...prevTest.questions, newQuestion] };
-    });
-  };
-
-  const removeQuestion = (index: number) => {
-    setTest((prevTest) => {
-      if (!prevTest) return null;
-      const updatedQuestions = prevTest.questions.filter((_, i) => i !== index);
-      return { ...prevTest, questions: updatedQuestions };
-    });
-  };
 
   const saveTest = async () => {
     if (!test) return;
@@ -152,7 +128,6 @@ export default function EditTestPage() {
       if (!response.ok) throw new Error("Failed to save test");
 
       alert("Test updated successfully!");
-      // router.push("/tests"); // Navigate back to the tests list page
 
     } catch (error) {
       console.error("Error saving test:", error);
@@ -215,30 +190,8 @@ export default function EditTestPage() {
                 </div>
               ))}
             </div>
-
-            <div className="flex items-center justify-between">
-              <label className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  checked={question.isMultipleChoice}
-                  onChange={(e) => handleQuestionChange(qIndex, "isMultipleChoice", e.target.checked)}
-                  className="h-5 w-5 text-indigo-600"
-                />
-                <span className="text-black">Allow multiple answers</span>
-              </label>
-              <button
-                onClick={() => removeQuestion(qIndex)}
-                className="text-white bg-red-600 text-sm px-2 py-1 rounded-lg hover:underline"
-              >
-                Remove Question
-              </button>
-            </div>
           </div>
         ))}
-
-        <button onClick={addQuestion} className="bg-green-500 text-white px-4 py-2 rounded-md">
-          + Add Question
-        </button>
 
         <div className="mt-6 flex justify-between">
           <button
