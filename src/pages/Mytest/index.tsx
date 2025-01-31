@@ -73,7 +73,7 @@ export default function TestsPage() {
               <div className=" flex items-center gap-3">
               <button
                 className="mt-4 px-4 py-2 text-black bg-white rounded-md  transition-colors"
-                // onClick={()=>router.push(`/Mytest/AttendTestPage?testId=${test._id}`)} // For example, triggering a test details view
+                onClick={()=>router.push(`/Mytest/EditTest?testId=${test._id}`)} // For example, triggering a test details view
               >
                 Edit Test
               </button>

@@ -21,8 +21,7 @@ export default function AttendTestPage() {
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, number | number[]>>({});
   const [loading, setLoading] = useState<boolean>(true);
   const [submitted, setSubmitted] = useState<boolean>(false);
-  const [score, setScore] = useState<number>(0); // To keep track of the score
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
+  const [score, setScore] = useState<number>(0);
   const router = useRouter();
   const { testId } = router.query;
 
@@ -47,7 +46,7 @@ export default function AttendTestPage() {
   const handleAnswerChange = (questionId: string, optionIndex: number) => {
     setSelectedAnswers((prevAnswers) => {
       const isMultipleChoice = test?.questions.find(q => q._id === questionId)?.isMultipleChoice;
-  
+
       if (isMultipleChoice) {
         const previousSelections = Array.isArray(prevAnswers[questionId]) ? prevAnswers[questionId] as number[] : [];
         return {
@@ -61,20 +60,18 @@ export default function AttendTestPage() {
       }
     });
   };
-  
 
   const handleSubmit = () => {
     let calculatedScore = 0;
     test?.questions.forEach((question) => {
       const selectedAnswer = selectedAnswers[question._id];
-  
-      // Ensure selectedAnswer is compared correctly whether it's an array or a number
+
       if (Array.isArray(selectedAnswer)) {
         if (
           selectedAnswer.length === question.correctAnswers.length &&
           selectedAnswer.every((val) => question.correctAnswers.includes(val))
         ) {
-          calculatedScore += 1; // Award points only if all selected answers are correct
+          calculatedScore += 1;
         }
       } else {
         if (question.correctAnswers.includes(selectedAnswer)) {
@@ -82,22 +79,9 @@ export default function AttendTestPage() {
         }
       }
     });
-  
+
     setScore(calculatedScore);
     setSubmitted(true);
-  };
-  
-
-  const goToNextQuestion = () => {
-    if (currentQuestionIndex < (test?.questions.length || 0) - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    }
-  };
-
-  const goToPreviousQuestion = () => {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(currentQuestionIndex - 1);
-    }
   };
 
   if (loading) {
@@ -116,55 +100,34 @@ export default function AttendTestPage() {
         {test && !submitted ? (
           <>
             <h1 className="text-3xl font-bold text-indigo-600 mb-6">{test.TestTitle}</h1>
-            <div className="flex justify-between mb-6">
-              <button
-                onClick={goToPreviousQuestion}
-                className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
-                disabled={currentQuestionIndex === 0}
-              >
-                Previous
-              </button>
-              <div className="text-lg font-semibold">
-                Question {currentQuestionIndex + 1} of {test.questions.length}
-              </div>
-              <button
-                onClick={goToNextQuestion}
-                className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
-                disabled={currentQuestionIndex === test.questions.length - 1}
-              >
-                Next
-              </button>
-            </div>
 
-            <div className="space-y-4">
-              {test.questions.map((question, index) => {
-                if (index !== currentQuestionIndex) return null; // Only render the current question
-                return (
-                  <div key={question._id} className="border p-4 rounded-lg">
-                    <p className="text-lg font-semibold">{question.text}</p>
-                    <div className="space-y-2 mt-4">
-                      {question.options.map((option, index) => (
-                        <label
-                          key={index}
-                          className="flex items-center space-x-2 cursor-pointer"
-                        >
-                          <input
-                            type={question.isMultipleChoice ? "checkbox" : "radio"}
-                            name={question._id}
-                            checked={selectedAnswers[question._id] === index}
-                            onChange={() => handleAnswerChange(question._id, index)}
-                            className="h-4 w-4 text-indigo-600"
-                          />
-                          <span className="text-gray-700">{option}</span>
-                        </label>
-                      ))}
-                    </div>
+            <div className="space-y-6">
+              {test.questions.map((question, qIndex) => (
+                <div key={question._id} className="border p-4 rounded-lg">
+                  <p className="text-lg font-semibold text-black">
+                    {qIndex + 1}. {question.text}
+                  </p>
+                  <div className="flex gap-6 mt-4">
+                    {question.options.map((option, index) => (
+                      <label key={index} className="flex items-center space-x-2 cursor-pointer">
+                        <input
+                          type={question.isMultipleChoice ? "checkbox" : "radio"}
+                          name={question._id}
+                          checked={Array.isArray(selectedAnswers[question._id]) 
+                            ? (selectedAnswers[question._id] as number[]).includes(index)
+                            : selectedAnswers[question._id] === index}
+                          onChange={() => handleAnswerChange(question._id, index)}
+                          className="h-4 w-4 text-indigo-600"
+                        />
+                        <span className="text-gray-700">{option}</span>
+                      </label>
+                    ))}
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
 
-            <div className="mt-6 flex justify-between">
+            <div className="mt-6 flex justify-center">
               <button
                 onClick={handleSubmit}
                 className="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors"
