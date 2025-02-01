@@ -225,34 +225,34 @@ export default function EditTestPage() {
   return (
     <Layout>
       <div className="space-y-6 p-6">
-        <h1 className="text-3xl font-bold text-indigo-600 mb-6">Edit Test</h1>
+        <h1 className="  text-xl sm:text-3xl font-bold text-indigo-600 mb-6">Edit Test</h1>
 
         <div className="mb-6">
-          <label className="block text-lg font-semibold text-black">Test Title</label>
+          <label className="block text-base sm:text-lg font-semibold text-black">Test Title</label>
           <input
             type="text"
             value={test?.TestTitle || ""}
             onChange={handleTestTitleChange}
-            className="w-full border p-2 text-black rounded-md"
+            className="w-full border text-sm sm:text-lg p-2 text-black rounded-md"
           />
         </div>
 
         {test?.questions.map((question, qIndex) => (
           <div key={question._id} className="border p-4 rounded-lg space-y-3">
-            <div className=" flex gap-3  w-[97%]">
+            <div className=" flex flex-col sm:flex-row gap-3  w-[97%]">
             <input
               type="text"
               value={question.text}
               onChange={(e) => handleQuestionChange(qIndex, "text", e.target.value)}
-              className="w-full border p-2 text-black rounded-md"
+              className="w-full border p-2 text-sm sm:text-lg text-black rounded-md"
               placeholder="Enter question text"
             />
               <button
                     onClick={() => handleDeleteConfirmation(question._id)}
                     disabled={isDeleting}
-                    className=" text-white flex items-center justify-center rounded-lg px-1.5 py-1  bg-red-600"
+                    className=" text-white  flex w-[15%] sm:w-auto items-center justify-center rounded-lg sm:px-1.5 py-0.5 sm:py-1  bg-red-600"
                   >
-                    <Trash size={20} /> {/* Trash is the delete icon */}
+                    <Trash className=" text-lg" /> {/* Trash is the delete icon */}
                   </button>
                   </div>
             <div className="grid gap-2">
@@ -262,7 +262,7 @@ export default function EditTestPage() {
                     type="text"
                     value={option}
                     onChange={(e) => handleOptionChange(qIndex, oIndex, e.target.value)}
-                    className="flex-1 border p-2 text-black rounded-md"
+                    className="flex-1 text-sm sm:text-lg border p-2 text-black rounded-md"
                     placeholder={`Option ${oIndex + 1}`}
                   />
                   <input
@@ -280,7 +280,7 @@ export default function EditTestPage() {
         <div className="mt-6 flex justify-between">
           <button
             onClick={saveTest}
-            className="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors"
+            className="px-6 py-3 bg-indigo-600 text-sm sm:text-lg text-white rounded-md hover:bg-indigo-700 transition-colors"
           >
             {saving ? "Saving..." : "Save Changes"}
           </button>

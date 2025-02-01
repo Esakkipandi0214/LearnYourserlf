@@ -175,7 +175,7 @@ export default function TestCreator({ createdBy }: TestCreatorProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8 p-6">
-      <h1 className="text-2xl font-bold text-black mb-6">Create a Test</h1>
+      <h1 className=" text-lg sm:text-2xl font-bold text-black mb-6">Create a Test</h1>
 
       {/* Test Title Input */}
       <div className="space-y-2">

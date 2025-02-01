@@ -37,7 +37,7 @@ const Header: React.FC<SideProps> = ({ isOpen,isLoggedIn,handleClearCookies, set
         </div>
         {isLoggedIn ? (
           <button onClick={handleClearCookies}>
-            <span className="bg-red-600 text-white px-4 py-2 rounded-md transition-colors">
+            <span className="bg-red-600 text-white text-sm sm:text-lg  sm:px-4  sm:py-2 py-2 px-2 rounded-md transition-colors">
               Logout
             </span>
           </button>

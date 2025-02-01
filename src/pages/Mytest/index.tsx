@@ -5,6 +5,7 @@ import { FaPlus } from "react-icons/fa";
 import { Trash } from 'lucide-react';
 import Cookies from "js-cookie";
 import {GlassmorphicLoader} from "@/components/common/LoaderModer"
+import { History } from "lucide-react";
 
 interface Question {
   text: string;
@@ -112,14 +113,14 @@ export default function TestsPage() {
 
   return (
     <Layout>
-      <div className="space-y-6 p-6">
+      <div className="space-y-6  sm:p-6">
         <div className=" flex justify-between items-center">
-          <h1 className="text-xl flex justify-center items-center font-bold text-[#23486A] ">
+          <h1 className=" text-lg sm:text-xl flex justify-center items-center font-bold text-[#23486A] ">
             Question Bank
           </h1>
           <button
             onClick={() => router.push("/Create-test")}
-            className=" bg-red-600 flex text-sm justify-center items-center font-medium px-1 py-2 rounded-lg text-white"
+            className=" bg-red-600 flex  text-xs sm:text-sm justify-center items-center font-medium px-1 py-2 rounded-lg text-white"
           >
             Create Test
           </button>
@@ -128,25 +129,32 @@ export default function TestsPage() {
           {tests.map((test) => (
             <div
               key={test._id}
-              className="border border-gray-200 rounded-lg p-6 transition-transform duration-300 transform hover:scale-105 hover:shadow-xl bg-[#23486A]"
+              className="border border-gray-200 rounded-lg px-1.5  py-3 sm:p-6 transition-transform duration-300 transform hover:sm:scale-105 hover:shadow-xl bg-[#23486A]"
             >
               <div className=" flex justify-between items-center">
-                <h2 className="text-xl font-semibold text-white">
+                <h2 className=" text-base sm:text-xl font-semibold text-white">
                   {test.TestTitle}
                 </h2>
-                <div className=" flex gap-2">
+                <div className=" flex gap-1">
+                <button
+                   onClick={()=>router.push(`/Mytest/test-overView/${test._id}`)}
+                    disabled={isDeleting}
+                    className="  rounded-lg px-1.5 py-1 "
+                  >
+                     <History className=" sm:w-5 sm:h-5 h-4 text-white" />
+                  </button>
                   <button
                     onClick={() => handleDeleteConfirmation(test._id)}
                     disabled={isDeleting}
-                    className=" text-white rounded-lg px-1.5 py-1  bg-red-600"
+                    className=" text-white rounded-lg flex items-center gap-2  sm:p-1   bg-red-600"
                   >
-                    <Trash size={20} /> {/* Trash is the delete icon */}
+                    <Trash className=" h-4 sm:h-auto" /> {/* Trash is the delete icon */}
                   </button>
                   <button
                     onClick={() => router.push(`/Mytest/AddQuestoin?testId=${test._id}`)}
-                    className="flex items-center gap-2 p-1 text-blue-600 bg-white rounded-lg"
+                    className="flex items-center gap-2  sm:p-1 px-1 text-blue-600 bg-white rounded-lg"
                   >
-                    <FaPlus />
+                    <FaPlus className=" h-3 sm:h-auto" />
                   </button>
                 </div>
                 
@@ -157,22 +165,16 @@ export default function TestsPage() {
               </p>
               <div className=" flex items-center gap-3">
                 <button
-                  className="mt-4 px-4 py-2 text-black bg-white rounded-md  transition-colors"
+                  className="mt-4 p-1 text-xs sm:text-xl sm:px-4 sm:py-2  text-black bg-white rounded-md  transition-colors"
                   onClick={() => router.push(`/Mytest/EditTest?testId=${test._id}`)}
                 >
                   Edit Test
                 </button>
                 <button
-                  className="mt-4 px-4 py-2 text-white bg-red-600 rounded-md  transition-colors"
+                  className="mt-4 p-1 text-xs sm:text-xl sm:px-4 sm:py-2  text-white bg-red-600 rounded-md  transition-colors"
                   onClick={() => router.push(`/Mytest/AttendTestPage?testId=${test._id}`)}
                 >
                   Take Test
-                </button>
-                <button
-                  className="mt-4 hover:underline px-4 py-2 text-white font-semibold text-[12px]   transition-colors"
-                  onClick={()=>router.push(`/Mytest/test-overView/${test._id}`)}
-                >
-                  OverView
                 </button>
               </div>
             </div>
