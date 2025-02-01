@@ -149,7 +149,7 @@ const Chart: FC = () => {
   
   return (
     <div className="flex flex-col space-y-6">
-      <h2 className="text-2xl font-semibold text-gray-900 mb-4">Test Scores Over Time</h2>
+      <h2 className=" text-lg sm:text-2xl font-semibold text-gray-900 mb-4">Test Scores Over Time</h2>
 
       {isMobile ? (
         <PolarArea className="w-full" data={mobileChartData} options={{ responsive: true, plugins: { title: { display: true, text: "Test Results" } } }} />

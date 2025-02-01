@@ -7,9 +7,9 @@ interface CardProps {
 
 const Card: FC<CardProps> = ({ title, value }) => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl">
-      <h2 className="text-xl font-semibold text-gray-800 mb-2">{title}</h2>
-      <p className="text-3xl font-bold text-gray-900">{value}</p>
+    <div className="bg-gray-800 p-3 sm:p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl">
+      <h2 className=" sm:text-xl font-semibold text-white mb-2">{title}</h2>
+      <p className=" sm:text-3xl font-bold text-white">{value}</p>
     </div>
   );
 };
