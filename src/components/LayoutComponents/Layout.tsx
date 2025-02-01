@@ -34,11 +34,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         {/* Sidebar */}
         <Sidebar  isOpen={isOpen} />
         {/* Main Content */}
-        <main className={`flex-1  lg:p-3 p-1  bg-[#E2E0C8] overflow-y-hidden  mt-2 lg:ml-48`}> 
-            <div className=" w-full h-full rounded-lg lg:rounded-2xl border border-transparent p-1 lg:p-4 bg-white">
-          {children}
-          </div>
-        </main>
+        <main className="flex-1 lg:p-3 p-1 bg-[#E2E0C8] mt-2 lg:ml-48">
+  <div className="w-full h-[50%] min-h-[600px] overflow-y-auto  rounded-lg lg:rounded-2xl border border-transparent p-1 lg:p-4 bg-white flex flex-col">
+    <div className="flex-1 h-full overflow-y-auto">
+      {children}
+    </div>
+  </div>
+</main>
       </div>
     </div>
   );

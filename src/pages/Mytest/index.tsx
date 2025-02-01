@@ -149,6 +149,7 @@ export default function TestsPage() {
                     <FaPlus />
                   </button>
                 </div>
+                
               </div>
               <p className="text-white/70">
                 Questions:{" "}
@@ -166,6 +167,12 @@ export default function TestsPage() {
                   onClick={() => router.push(`/Mytest/AttendTestPage?testId=${test._id}`)}
                 >
                   Take Test
+                </button>
+                <button
+                  className="mt-4 hover:underline px-4 py-2 text-white font-semibold text-[12px]   transition-colors"
+                  onClick={()=>router.push(`/Mytest/test-overView/${test._id}`)}
+                >
+                  OverView
                 </button>
               </div>
             </div>
