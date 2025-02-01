@@ -84,7 +84,7 @@ export default function AddQuestion() {
         type="text"
         value={text}
         onChange={(e) => setText(e.target.value)}
-        className="w-full border p-2 rounded-md mb-4"
+        className="w-full border p-2 text-black rounded-md mb-4"
         placeholder="Enter question text"
       />
       {options.map((option, index) => (
@@ -93,7 +93,7 @@ export default function AddQuestion() {
             type="text"
             value={option}
             onChange={(e) => handleOptionChange(index, e.target.value)}
-            className="flex-1 border p-2 rounded-md"
+            className="flex-1 border p-2 text-black rounded-md"
             placeholder={`Option ${index + 1}`}
           />
           <input
@@ -111,7 +111,7 @@ export default function AddQuestion() {
           onChange={(e) => setIsMultipleChoice(e.target.checked)}
           className="h-5 w-5"
         />
-        <span>Allow multiple answers</span>
+        <span className=" text-black">Allow multiple answers</span>
       </label>
       <button
         onClick={handleSubmit}

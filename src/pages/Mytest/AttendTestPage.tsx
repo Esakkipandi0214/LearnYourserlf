@@ -183,7 +183,24 @@ export default function AttendTestPage() {
         ) : (
           <div className="space-y-6">
             <h1 className="text-3xl font-bold text-indigo-600 mb-6">Test Result</h1>
-            <p className="text-lg">Your score is: {score} out of {test?.questions.length}</p>
+            <p className="text-lg text-black">Your score is: {score} out of {test?.questions.length}</p>
+            <div className="flex flex-col sm:flex-row gap-4  sm:justify-end  sm:items-center">
+  <div className="flex items-center gap-2">
+    <span className="w-4 h-4 bg-blue-500 rounded-full"></span>
+    <h1 className="text-black bg-blue-200 px-2 py-1 rounded">Correct Options</h1>
+  </div>
+  
+  <div className="flex items-center gap-2">
+    <span className="w-4 h-4 bg-green-500 rounded-full"></span>
+    <h1 className="text-black bg-green-200 px-2 py-1 rounded">Correct Selection</h1>
+  </div>
+  
+  <div className="flex items-center gap-2">
+    <span className="w-4 h-4 bg-red-500 rounded-full"></span>
+    <h1 className="text-black bg-red-200 px-2 py-1 rounded">Incorrect Selection</h1>
+  </div>
+</div>
+
             <div className="space-y-6">
               {test?.questions.map((question, qIndex) => (
                 <div key={question._id} className="border p-4 rounded-lg">
@@ -199,7 +216,7 @@ export default function AttendTestPage() {
                       return (
                         <p
                           key={index}
-                          className={`p-2 rounded-lg ${isSelected ? (isCorrect ? 'bg-green-200' : 'bg-red-200') : ''} ${!isSelected && isCorrect ? 'bg-blue-200' : ''}`}
+                          className={`p-2 rounded-lg text-black ${isSelected ? (isCorrect ? 'bg-green-200' : 'bg-red-200') : ''} ${!isSelected && isCorrect ? 'bg-blue-200' : ''}`}
                         >
                           {`${index + 1})`}. {option}
                         </p>
