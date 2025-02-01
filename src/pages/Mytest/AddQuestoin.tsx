@@ -29,7 +29,33 @@ export default function AddQuestion() {
     });
   };
 
+
+  const validateQuestion = () => {
+    if (!text.trim()) {
+      alert("Question text is required!");
+      return false;
+    }
+
+    if (options.length < 2) {
+      alert("Each question must have at least two options!");
+      return false;
+    }
+
+    if (options.some((option) => !option.trim())) {
+      alert("All options must be filled!");
+      return false;
+    }
+
+    if (correctAnswers.length === 0) {
+      alert("At least one correct answer is required!");
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async () => {
+    if (!validateQuestion()) return;
     setSaving(true);
     try {
       const response = await fetch(`/api/tests/AddQuestion/${testId}`, {

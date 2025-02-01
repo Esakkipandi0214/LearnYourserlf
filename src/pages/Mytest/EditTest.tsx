@@ -110,6 +110,46 @@ export default function EditTestPage() {
 
   const saveTest = async () => {
     if (!test) return;
+  
+      // Validate the form
+  if (!test.TestTitle) {
+    alert("Test title is required!")
+    return
+  }
+
+  if (test.questions.length === 0) {
+    alert("You must add at least one question!")
+    return
+  }
+
+  for (const question of test.questions) {
+    // Check if the question text is filled
+    if (!question.text.trim()) {
+      alert("Question text is required for all questions!")
+      return
+    }
+
+    // Check if there are at least two options
+    if (question.options.length < 2) {
+      alert(`Question ${test.questions.indexOf(question) + 1} must have at least two options!`)
+      return
+    }
+
+    // Check if all options are filled
+    if (question.options.some(option => !option.trim())) {
+      alert(`All options must be filled for Question ${test.questions.indexOf(question) + 1}!`)
+      return
+    }
+
+    // Check if there is at least one correct answer
+    if (question.correctAnswers.length === 0) {
+      alert(`At least one correct answer is required for Question ${test.questions.indexOf(question) + 1}!`)
+      return
+    }
+  }
+
+
+
     setSaving(true);
 
     try {
