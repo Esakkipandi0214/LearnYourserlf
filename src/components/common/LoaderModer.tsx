@@ -1,13 +1,24 @@
 import React from 'react';
+import { RotatingLines } from "react-loader-spinner";
 
 export const GlassmorphicLoader = () => {
   return (
     <div className="relative flex justify-center items-center h-screen bg-gray-100">
       {/* Glassmorphic Background */}
-      <div className="absolute inset-0 bg-white bg-opacity-20 backdrop-blur-md z-10"></div>
+      <div className="absolute inset-0 z-40 bg-black/45 bg-opacity-20 backdrop-blur-md "></div>
 
       {/* Loader */}
-      <div className="absolute animate-spin w-12 h-12 border-4 border-t-4 border-transparent border-t-orange-400 rounded-full z-20"></div>
+      <div className="flex absolute z-50 items-center justify-center h-[calc(100vh-6rem)]">
+      <div className="flex space-x-2">
+        <RotatingLines
+              strokeColor="#578E7E"
+              strokeWidth="5"
+              animationDuration="1"
+              width="96"
+              visible={true}
+            />
+      </div>
+    </div>
     </div>
   );
 };
