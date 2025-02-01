@@ -225,15 +225,15 @@ export default function EditTestPage() {
   return (
     <Layout>
       <div className="space-y-6 p-2 sm:p-6">
-        <h1 className="  text-xl sm:text-3xl font-bold text-indigo-600 mb-6">Edit Test</h1>
+        <h1 className="  text-xl lg:text-3xl font-bold text-indigo-600 mb-6">Edit Test</h1>
 
         <div className="mb-6">
-          <label className="block text-base sm:text-lg font-semibold text-black">Test Title</label>
+          <label className="block text-base lg:text-lg font-semibold text-black">Test Title</label>
           <input
             type="text"
             value={test?.TestTitle || ""}
             onChange={handleTestTitleChange}
-            className="w-full border text-sm sm:text-lg p-2 text-black rounded-md"
+            className="w-full border text-sm lg:text-lg p-2 text-black rounded-md"
           />
         </div>
 
@@ -244,7 +244,7 @@ export default function EditTestPage() {
               type="text"
               value={question.text}
               onChange={(e) => handleQuestionChange(qIndex, "text", e.target.value)}
-              className="w-full border p-2 text-sm sm:text-lg text-black rounded-md"
+              className="w-full border p-2 text-sm lg:text-lg text-black rounded-md"
               placeholder="Enter question text"
             />
               <button
@@ -262,7 +262,7 @@ export default function EditTestPage() {
                     type="text"
                     value={option}
                     onChange={(e) => handleOptionChange(qIndex, oIndex, e.target.value)}
-                    className="flex-1 text-sm sm:text-lg border p-2 text-black rounded-md"
+                    className="flex-1 text-sm lg:text-lg border p-2 text-black rounded-md"
                     placeholder={`Option ${oIndex + 1}`}
                   />
                   <input

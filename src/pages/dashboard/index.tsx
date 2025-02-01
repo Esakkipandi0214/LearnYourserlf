@@ -7,7 +7,7 @@ const Dashboard: FC = () => {
   return (
     <Layout>
       <div className="max-w-7xl mx-auto  px-3 sm:px-6 py-8">
-        <h1 className=" text-xl sm:text-4xl font-bold text-gray-900 mb-8">Student Test Dashboard</h1>
+        <h1 className=" text-xl sm:text-2xl lg:text-4xl font-bold text-gray-900 mb-8">Student Test Dashboard</h1>
 
         {/* Card Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-3 sm:gap-8  sm:mb-12">
