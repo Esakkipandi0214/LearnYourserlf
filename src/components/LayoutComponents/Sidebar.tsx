@@ -14,7 +14,7 @@ const Sidebar: React.FC<SideProps> = ({ isOpen }) => {
         router.push(`/${path}`)
     }
   return (
-    <div className="fixed">
+    <div className={`fixed z-50 ${ !isOpen && "hidden"} lg:block`}>
       {/* Sidebar Wrapper */}
       <div
         className={`lg:block fixed top-14 left-0 bg-gray-800 text-white ${
@@ -25,23 +25,19 @@ const Sidebar: React.FC<SideProps> = ({ isOpen }) => {
         <ul className="my-4 flex flex-col gap-2 sm:my-0">
           <li className="flex rounded-lg hover:bg-gray-700 transition-colors  items-center gap-2 p-1 justify-start">
             <FaHome size={20} onClick={()=>handleRouteLink("Courses")} />
-            {isOpen && (
-              <Link href="/Courses" legacyBehavior >
+              <Link href="/Courses" className={`${isOpen ?"block": "hidden"} lg:block`} legacyBehavior >
                 <a className=" flex items-center   ">
                   Home
                 </a>
               </Link>
-            )}
           </li>
           <li className="flex rounded-lg hover:bg-gray-700 transition-colors  items-center gap-2 p-1 justify-start">
             <FaBook size={20} onClick={()=>handleRouteLink("Courses")} />
-            {isOpen && (
-              <Link href="/Mytest" legacyBehavior>
+              <Link href="/Mytest" className={`${isOpen ?"block": "hidden"} lg:block`} legacyBehavior>
                 <a className=" flex items-center ">
                 My Test
                 </a>
               </Link>
-            )}
           </li>
           {/* Add more links here with icons */}
         </ul>

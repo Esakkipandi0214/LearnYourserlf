@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const router = useRouter()
 
@@ -34,7 +34,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         {/* Sidebar */}
         <Sidebar  isOpen={isOpen} />
         {/* Main Content */}
-        <main className={`flex-1  lg:p-3 p-1  bg-[#E2E0C8] overflow-y-hidden  ${ isOpen?" ml-36":" ml-0"} mt-2 lg:ml-64`}> 
+        <main className={`flex-1  lg:p-3 p-1  bg-[#E2E0C8] overflow-y-hidden  mt-2 lg:ml-64`}> 
             <div className=" w-full h-full rounded-lg lg:rounded-2xl border border-transparent p-1 lg:p-4 bg-white">
           {children}
           </div>
