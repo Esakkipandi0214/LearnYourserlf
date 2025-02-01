@@ -25,9 +25,9 @@ const Sidebar: React.FC<SideProps> = ({ isOpen }) => {
         <ul className="my-4 flex flex-col gap-2 sm:my-0">
           <li className="flex rounded-lg hover:bg-gray-700 transition-colors  items-center gap-2 p-1 justify-start">
             <FaHome size={20} onClick={()=>handleRouteLink("Courses")} />
-              <Link href="/Courses" className={`${isOpen ?"block": "hidden"} lg:block`} legacyBehavior >
+              <Link href="/dashboard" className={`${isOpen ?"block": "hidden"} lg:block`} legacyBehavior >
                 <a className=" flex items-center   ">
-                  Home
+                Dashboard
                 </a>
               </Link>
           </li>

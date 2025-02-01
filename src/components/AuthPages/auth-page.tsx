@@ -21,7 +21,7 @@ export default function AuthPage() {
     const Auto_auth = Cookies.get("auth_token_LearnYourSelf"); // Retrieve the JWT token
     
     if (Auto_auth) {
-      router.push("/Courses"); // Redirect to "/Courses" if the token is found
+      router.push("/dashboard"); // Redirect to "/Courses" if the token is found
     }
   }, []); 
   

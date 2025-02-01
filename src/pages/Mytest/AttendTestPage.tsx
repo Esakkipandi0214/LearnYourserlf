@@ -151,7 +151,7 @@ export default function AttendTestPage() {
                   <p className="text-lg font-semibold text-black">
                     {qIndex + 1}. {question.text}
                   </p>
-                  <div className="flex gap-6 mt-4">
+                  <div className="flex flex-col sm:flex-row gap-6 mt-4">
                     {question.options.map((option, index) => (
                       <label key={index} className="flex items-center space-x-2 cursor-pointer">
                         <input
@@ -190,7 +190,7 @@ export default function AttendTestPage() {
                   <p className="text-lg font-semibold text-black">
                     {qIndex + 1}. {question.text}
                   </p>
-                  <div className="flex gap-6 mt-4">
+                  <div className="flex flex-col sm:flex-row  gap-6 mt-4">
                     {question.options.map((option, index) => {
                       const isCorrect = question.correctAnswers.includes(index);
                       const isSelected = Array.isArray(selectedAnswers[question._id])
