@@ -88,9 +88,9 @@ export default function TestResultsPage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {formattedResults.map((result) => (
+                  {formattedResults.map((result,index) => (
                     <TableRow key={result._id} className="border-b">
-                      <TableCell className="px-8 sm:px-4 py-2 text-center">{result._id.slice(-6)}</TableCell>
+                      <TableCell className="px-8 sm:px-4 py-2 text-center">{index+1}</TableCell>
                       <TableCell className="px-14 sm:px-4 py-2">{result.testTitle}</TableCell>
                       <TableCell className="px-8 sm:px-4 py-2 text-center">{result.questionCount}</TableCell>
                       <TableCell className="px-8 sm:px-4 py-2 text-center">{result.marksObtained}</TableCell>
