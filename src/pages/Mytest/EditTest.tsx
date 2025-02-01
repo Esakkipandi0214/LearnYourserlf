@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Layout from "@/components/LayoutComponents/Layout";
 import { Trash } from 'lucide-react';
+import {GlassmorphicLoader} from "@/components/common/LoaderModer"
+
 
 
 interface Question {
@@ -175,9 +177,7 @@ export default function EditTestPage() {
   if (loading) {
     return (
       <Layout>
-        <div className="flex justify-center items-center h-screen">
-          <span className="text-2xl text-gray-600">Loading test...</span>
-        </div>
+        <GlassmorphicLoader/>
       </Layout>
     );
   }
