@@ -161,7 +161,7 @@ const Chart: FC = () => {
       <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {tests.map((test) => (
           <div key={test.testTitle} className="bg-white p-4 rounded-lg shadow-md">
-            <p className="font-semibold text-lg">{test.testTitle}</p>
+            <p className="font-semibold text-gray-800 text-lg">{test.testTitle}</p>
             <p className="text-sm text-gray-600">Questions: {test.questionCount}</p>
             <p className="text-sm text-gray-600">Correct Answers: {test.correctAnswers}</p>
             <p className="text-sm text-gray-600">Avg. Mark: {test.percentage}%</p>
