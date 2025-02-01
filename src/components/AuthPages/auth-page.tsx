@@ -49,7 +49,7 @@ export default function AuthPage() {
         // console.log("decodedData",decodedData);
         
         // Handle successful login/signup, redirect to the Courses page
-        router.push("/Courses");
+        router.push("/dashboard");
       } else {
         alert(data.error || "Something went wrong.");
       }
