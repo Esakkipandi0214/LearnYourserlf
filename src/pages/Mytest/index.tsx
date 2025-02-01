@@ -129,10 +129,10 @@ export default function TestsPage() {
           {tests.map((test) => (
             <div
               key={test._id}
-              className="border border-gray-200 rounded-lg px-1.5  py-3 sm:p-3 lg:p-6 transition-transform duration-300 transform hover:sm:scale-105 hover:shadow-xl bg-[#23486A]"
+              className="border border-gray-200 rounded-lg px-1.5  py-3 sm:p-3 lg:p-4 transition-transform duration-300 transform hover:sm:scale-105 hover:shadow-xl bg-[#23486A]"
             >
               <div className=" flex justify-between items-center">
-                <h2 className=" text-base  lg:text-xl font-semibold text-white">
+                <h2 className=" text-base  lg:text-lg font-semibold text-white">
                   {test.TestTitle}
                 </h2>
                 <div className=" flex gap-1">
@@ -148,7 +148,7 @@ export default function TestsPage() {
                     disabled={isDeleting}
                     className=" text-white rounded-lg flex items-center gap-2   lg:p-1   bg-red-600"
                   >
-                    <Trash className=" h-4  lg:h-auto" /> {/* Trash is the delete icon */}
+                    <Trash className=" h-4  lg:h-4" /> {/* Trash is the delete icon */}
                   </button>
                   <button
                     onClick={() => router.push(`/Mytest/AddQuestoin?testId=${test._id}`)}
@@ -165,13 +165,13 @@ export default function TestsPage() {
               </p>
               <div className=" flex items-center gap-3">
                 <button
-                  className="mt-4 p-1 text-xs  lg:text-xl  lg:px-4 sm:py-2  text-black bg-white rounded-md  transition-colors"
+                  className="mt-4 p-1 text-xs  lg:text-base  lg:px-2 sm:py-2 lg:py-1  text-black bg-white rounded-md  transition-colors"
                   onClick={() => router.push(`/Mytest/EditTest?testId=${test._id}`)}
                 >
                   Edit Test
                 </button>
                 <button
-                  className="mt-4 p-1 text-xs lg:text-xl lg:px-4 sm:py-2  text-white bg-red-600 rounded-md  transition-colors"
+                  className="mt-4 p-1 text-xs lg:text-base lg:px-2 sm:py-2 lg:py-1  text-white bg-red-600 rounded-md  transition-colors"
                   onClick={() => router.push(`/Mytest/AttendTestPage?testId=${test._id}`)}
                 >
                   Take Test
