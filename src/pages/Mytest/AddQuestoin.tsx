@@ -79,7 +79,7 @@ export default function AddQuestion() {
   return (
     <Layout>
     <div className=" p-2 sm:p-6  bg-white shadow-md rounded-md">
-      <h2 className=" text-lg sm:text-2xl font-bold text-indigo-600 mb-4">Add Question</h2>
+      <h2 className=" text-lg sm:text-2xl lg:text-lg font-bold text-indigo-600 mb-4">Add Question</h2>
       <input
         type="text"
         value={text}
@@ -93,7 +93,7 @@ export default function AddQuestion() {
             type="text"
             value={option}
             onChange={(e) => handleOptionChange(index, e.target.value)}
-            className="flex-1 text-sm sm:text-lg border p-2 text-black rounded-md"
+            className="flex-1 text-sm sm:text-lg lg:text-base border p-2 text-black rounded-md"
             placeholder={`Option ${index + 1}`}
           />
           <input
@@ -109,13 +109,13 @@ export default function AddQuestion() {
           type="checkbox"
           checked={isMultipleChoice}
           onChange={(e) => setIsMultipleChoice(e.target.checked)}
-          className="h-5 text-sm sm:text-lg  sm:w-5"
+          className="h-5 text-sm sm:text-lg lg:text-base  sm:w-5"
         />
-        <span className=" text-black text-sm sm:text-lg">Allow multiple answers</span>
+        <span className=" text-black text-sm lg:text-base sm:text-lg">Allow multiple answers</span>
       </label>
       <button
         onClick={handleSubmit}
-        className=" text-sm sm:text-lg sm:w-full bg-indigo-600 text-white p-2 rounded-md"
+        className=" text-sm sm:text-lg lg:text-base sm:w-full bg-indigo-600 text-white p-2 rounded-md"
       >
         {saving ? "Saving..." : "Add Question"}
       </button>
