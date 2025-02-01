@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Layout from "@/components/LayoutComponents/Layout";
 
+
 export default function AddQuestion() {
   const [text, setText] = useState("");
   const [options, setOptions] = useState(["", "", "", ""]);
