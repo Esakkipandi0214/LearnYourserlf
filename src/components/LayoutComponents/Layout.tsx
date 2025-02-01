@@ -28,13 +28,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }
     
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-[#E2E0C8]">
       <Header setIsOpen={setIsOpen} handleClearCookies={handleClearCookies} isLoggedIn={isLoggedIn} isOpen={isOpen} />
       <div className="flex flex-1 pt-16 overflow-y-hidden">
         {/* Sidebar */}
         <Sidebar  isOpen={isOpen} />
         {/* Main Content */}
-        <main className={`flex-1  lg:p-3 p-1  bg-[#E2E0C8] overflow-y-hidden  mt-2 lg:ml-64`}> 
+        <main className={`flex-1  lg:p-3 p-1  bg-[#E2E0C8] overflow-y-hidden  mt-2 lg:ml-48`}> 
             <div className=" w-full h-full rounded-lg lg:rounded-2xl border border-transparent p-1 lg:p-4 bg-white">
           {children}
           </div>

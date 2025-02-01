@@ -14,13 +14,13 @@ const Sidebar: React.FC<SideProps> = ({ isOpen }) => {
         router.push(`/${path}`)
     }
   return (
-    <div className={`fixed z-50 ${ !isOpen && "hidden"} lg:block`}>
+    <div className={`fixed z-50 h-full ${ !isOpen && "hidden"} lg:block`}>
       {/* Sidebar Wrapper */}
       <div
-        className={`lg:block fixed top-14 left-0 bg-gray-800 text-white ${
-          isOpen ? " block": " hidden" } "w-40   lg:w-64 min-h-screen p-6 transition-all z-20 ${
-          isOpen ? "left-0" : "-left-64"
-        } lg:left-0 lg:relative lg:top-0`}
+        className={`lg:block fixed top-20  transition-all duration-600 ease-linear z-20  rounded-3xl h-[85%]  lg:left-7 bg-gray-800 text-white ${
+          isOpen ? " block": " hidden" } " w-40   lg:w-40  p-6  z-20 ${
+          isOpen ? "left-4" : "-left-64"
+        } lg:left-0 lg:relative lg:top-10`}
       >
         <ul className="my-4 flex flex-col gap-2 sm:my-0">
           <li className="flex rounded-lg hover:bg-gray-700 transition-colors  items-center gap-2 p-1 justify-start">
