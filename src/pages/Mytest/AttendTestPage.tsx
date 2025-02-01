@@ -140,12 +140,12 @@ export default function AttendTestPage() {
 
   return (
     <Layout>
-      <div className="space-y-6 p-6">
+      <div className=" space-y-6 p-2 sm:p-6">
         {test && !submitted ? (
           <>
             <h1 className=" text-lg sm:text-3xl font-bold text-indigo-600 mb-6">{test.TestTitle}</h1>
 
-            <div className="space-y-6">
+            <div className=" space-y-2 sm:space-y-6">
               {test.questions.map((question, qIndex) => (
                 <div key={question._id} className="border p-4 rounded-lg">
                   <p className=" text-sm sm:text-lg font-semibold text-black">

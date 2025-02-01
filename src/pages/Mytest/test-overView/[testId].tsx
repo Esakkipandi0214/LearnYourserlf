@@ -69,33 +69,33 @@ export default function TestResultsPage() {
 
   return (
     <Layout>
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto  sm:p-4">
         <Card className="shadow-lg rounded-xl">
           <CardContent className="p-4">
-            <h2 className="text-2xl font-semibold mb-4">Test Results</h2>
+            <h2 className=" text-lg sm:text-2xl font-semibold mb-4">Test Results</h2>
 
             {/* Responsive Table Wrapper */}
             <div className="overflow-x-auto">
               <Table className="min-w-full">
                 <TableHeader>
                   <TableRow className="bg-gray-200">
-                    <TableHead className="px-4 py-2 whitespace-nowrap">ID</TableHead>
-                    <TableHead className="px-4 py-2 whitespace-nowrap">Test Title</TableHead>
-                    <TableHead className="px-4 py-2 whitespace-nowrap">Questions</TableHead>
-                    <TableHead className="px-4 py-2 whitespace-nowrap">Marks Obtained</TableHead>
-                    <TableHead className="px-4 py-2 whitespace-nowrap">Total Marks</TableHead>
-                    <TableHead className="px-4 py-2 whitespace-nowrap">Submitted At</TableHead>
+                    <TableHead className="  px-8 sm:px-4 py-2 whitespace-nowrap">ID</TableHead>
+                    <TableHead className="px-32 sm:px-4 py-2 whitespace-nowrap">Test Title</TableHead>
+                    <TableHead className="px-8 sm:px-4 py-2 whitespace-nowrap">Questions</TableHead>
+                    <TableHead className="px-8 sm:px-4 py-2 whitespace-nowrap">Marks Obtained</TableHead>
+                    <TableHead className="px-8 sm:px-4 py-2 whitespace-nowrap">Total Marks</TableHead>
+                    <TableHead className="px-28 sm:px-4 py-2 whitespace-nowrap">Submitted At</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {formattedResults.map((result) => (
                     <TableRow key={result._id} className="border-b">
-                      <TableCell className="px-4 py-2 text-center">{result._id.slice(-6)}</TableCell>
-                      <TableCell className="px-4 py-2">{result.testTitle}</TableCell>
-                      <TableCell className="px-4 py-2 text-center">{result.questionCount}</TableCell>
-                      <TableCell className="px-4 py-2 text-center">{result.marksObtained}</TableCell>
-                      <TableCell className="px-4 py-2 text-center">{result.totalMarks}</TableCell>
-                      <TableCell className="px-4 py-2 text-center">{result.formattedDate}</TableCell>
+                      <TableCell className="px-8 sm:px-4 py-2 text-center">{result._id.slice(-6)}</TableCell>
+                      <TableCell className="px-14 sm:px-4 py-2">{result.testTitle}</TableCell>
+                      <TableCell className="px-8 sm:px-4 py-2 text-center">{result.questionCount}</TableCell>
+                      <TableCell className="px-8 sm:px-4 py-2 text-center">{result.marksObtained}</TableCell>
+                      <TableCell className="px-8 sm:px-4 py-2 text-center">{result.totalMarks}</TableCell>
+                      <TableCell className="px-8 sm:px-4 py-2 text-center">{result.formattedDate}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

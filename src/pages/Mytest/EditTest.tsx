@@ -224,7 +224,7 @@ export default function EditTestPage() {
 
   return (
     <Layout>
-      <div className="space-y-6 p-6">
+      <div className="space-y-6 p-2 sm:p-6">
         <h1 className="  text-xl sm:text-3xl font-bold text-indigo-600 mb-6">Edit Test</h1>
 
         <div className="mb-6">
@@ -289,21 +289,21 @@ export default function EditTestPage() {
 
        {/* Confirmation Modal */}
        {isModalOpen && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+        <div className="fixed p-4 sm:p-2 inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white rounded-lg p-6 w-96">
-            <h2 className="text-xl font-semibold text-gray-800">Are you sure?</h2>
-            <p className="text-gray-600 mt-2">This action cannot be undone.</p>
+            <h2 className=" text-base sm:text-xl font-semibold text-gray-800">Are you sure?</h2>
+            <p className="text-gray-600 text-base sm:text-xl mt-2">This action cannot be undone.</p>
             <div className="flex gap-4 mt-4">
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md"
+                className=" sm:px-4 px-2 text-sm sm:text-xl py-2 bg-gray-300 text-gray-800 rounded-md"
               >
                 Cancel
               </button>
               <button
                 onClick={handleDelete}
                 disabled={isDeleting}
-                className="px-4 py-2 bg-red-600 text-white rounded-md"
+                className="sm:px-4 px-2 text-sm sm:text-xl py-2 bg-red-600 text-white rounded-md"
               >
                 {isDeleting ? "Deleting..." : "Delete"}
               </button>

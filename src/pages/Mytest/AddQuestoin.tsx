@@ -78,7 +78,7 @@ export default function AddQuestion() {
 
   return (
     <Layout>
-    <div className="p-6  bg-white shadow-md rounded-md">
+    <div className=" p-2 sm:p-6  bg-white shadow-md rounded-md">
       <h2 className=" text-lg sm:text-2xl font-bold text-indigo-600 mb-4">Add Question</h2>
       <input
         type="text"
