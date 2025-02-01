@@ -143,12 +143,12 @@ export default function AttendTestPage() {
       <div className=" space-y-6 p-2 sm:p-6">
         {test && !submitted ? (
           <>
-            <h1 className=" text-lg  lg:text-3xl font-bold text-indigo-600 mb-6">{test.TestTitle}</h1>
+            <h1 className=" text-lg  lg:text-xl font-bold text-indigo-600 mb-6">{test.TestTitle}</h1>
 
             <div className=" space-y-2 sm:space-y-6">
               {test.questions.map((question, qIndex) => (
                 <div key={question._id} className="border p-4 rounded-lg">
-                  <p className=" text-sm  lg:text-lg font-semibold text-black">
+                  <p className=" text-sm  lg:text-base font-semibold text-black">
                     {qIndex + 1}. {question.text}
                   </p>
                   <div className="flex flex-col lg:flex-row gap-6 mt-4">
@@ -163,7 +163,7 @@ export default function AttendTestPage() {
                           onChange={() => handleAnswerChange(question._id, index)}
                           className="h-4 w-4 text-indigo-600"
                         />
-                        <span className="text-gray-700 text-base lg:text-3xl">{option}</span>
+                        <span className="text-gray-700 text-base lg:text-base">{option}</span>
                       </label>
                     ))}
                   </div>
@@ -182,29 +182,29 @@ export default function AttendTestPage() {
           </>
         ) : (
           <div className=" space-y-3 sm:space-y-6">
-            <h1 className=" text-lg lg:text-3xl font-bold text-indigo-600  sm:mb-6">Test Result</h1>
+            <h1 className=" text-lg lg:text-xl font-bold text-indigo-600  sm:mb-6">Test Result</h1>
             <p className=" text-black text-sm sm:text-lg">Your score is: {score} out of {test?.questions.length}</p>
             <div className="flex flex-col sm:flex-row sm:gap-4 gap-2  sm:justify-end  sm:items-center">
   <div className="flex items-center gap-2">
     <span className="w-4 h-4 bg-blue-500 rounded-full"></span>
-    <h1 className="text-black bg-blue-200 text-sm lg:text-lg px-2 py-1 rounded">Correct Options</h1>
+    <h1 className="text-black bg-blue-200 text-sm lg:text-base px-2 py-1 rounded">Correct Options</h1>
   </div>
   
   <div className="flex items-center gap-2">
     <span className="w-4 h-4 bg-green-500  rounded-full"></span>
-    <h1 className="text-black bg-green-200 text-sm  lg:text-lg px-2 py-1 rounded">Correct Selection</h1>
+    <h1 className="text-black bg-green-200 text-sm  lg:text-base px-2 py-1 rounded">Correct Selection</h1>
   </div>
   
   <div className="flex items-center gap-2">
     <span className="w-4 h-4 bg-red-500 rounded-full"></span>
-    <h1 className="text-black bg-red-200 text-sm lg:text-lg px-2 py-1 rounded">Incorrect Selection</h1>
+    <h1 className="text-black bg-red-200 text-sm lg:text-base px-2 py-1 rounded">Incorrect Selection</h1>
   </div>
 </div>
 
             <div className="space-y-6">
               {test?.questions.map((question, qIndex) => (
                 <div key={question._id} className="border p-4 rounded-lg">
-                  <p className=" text-sm lg:text-lg font-semibold text-black">
+                  <p className=" text-sm lg:text-base font-semibold text-black">
                     {qIndex + 1}. {question.text}
                   </p>
                   <div className="flex flex-col lg:flex-row  gap-6 mt-4">
@@ -216,7 +216,7 @@ export default function AttendTestPage() {
                       return (
                         <p
                           key={index}
-                          className={`p-2 text-sm lg:text-lg rounded-lg text-black ${isSelected ? (isCorrect ? 'bg-green-200' : 'bg-red-200') : ''} ${!isSelected && isCorrect ? 'bg-blue-200' : ''}`}
+                          className={`p-2 text-sm lg:text-base rounded-lg text-black ${isSelected ? (isCorrect ? 'bg-green-200' : 'bg-red-200') : ''} ${!isSelected && isCorrect ? 'bg-blue-200' : ''}`}
                         >
                           {`${index + 1})`}. {option}
                         </p>
