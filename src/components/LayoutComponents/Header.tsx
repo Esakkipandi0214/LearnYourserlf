@@ -1,16 +1,30 @@
 import React from "react";
 import Link from "next/link";
 import { Menu, X, Search } from "lucide-react";
-
+import Cookies from "js-cookie";
+// import { useRouter } from "next/router";
 interface SideProps {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
   isLoggedIn: boolean;
-  handleClearCookies: ()=> void;
 }
 
-const Header: React.FC<SideProps> = ({ isOpen,isLoggedIn,handleClearCookies, setIsOpen }) => {
+const Header: React.FC<SideProps> = ({ isOpen,isLoggedIn, setIsOpen }) => {
+  // const router = useRouter()
 
+  const handleClearCookies = () => {
+    Cookies.remove("auth_token_LearnYourSelf");
+    Cookies.remove("userId_LearnYourSelf");
+    Cookies.remove("email_LearnYourSelf");
+    Cookies.remove("username_LearnYourSelf");
+  
+    // Ensure cookies are removed before reloading
+    setTimeout(() => { // Redirect to home
+      window.location.reload();
+      window.location.href = "/"; // Reload to clear all stored data
+    }, 100);
+  };
+  
 
   return (
     <header className="bg-gray-800 text-white p-4 shadow-md fixed w-full z-10 top-0 left-0 flex items-center justify-between">
