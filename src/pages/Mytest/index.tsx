@@ -126,7 +126,7 @@ export default function TestsPage() {
           </button>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {tests.map((test) => (
+          { tests?.length > 0 ? tests.map((test) => (
             <div
               key={test._id}
               className="border border-gray-200 rounded-lg px-1.5  py-3 sm:p-3 lg:p-4 transition-transform duration-300 transform hover:sm:scale-105 hover:shadow-xl bg-[#23486A]"
@@ -178,7 +178,11 @@ export default function TestsPage() {
                 </button>
               </div>
             </div>
-          ))}
+          )):
+          <div className="text-center text-black p-2 col-span-3">
+      <p className="text-lg font-semibold">No Tests Available</p>
+    </div>
+    }
         </div>
       </div>
 
