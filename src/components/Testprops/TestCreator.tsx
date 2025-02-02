@@ -1,12 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState , useEffect} from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { PlusCircle, Trash2 } from "lucide-react"
+import Cookies from "js-cookie"
 
 interface Question {
   text: string
@@ -23,17 +24,30 @@ interface Test {
   TestTitle: string
 }
 
-interface TestCreatorProps {
-  createdBy: string
-}
+// interface TestCreatorProps {
+//   createdBy: string
+// }
 
-export default function TestCreator({ createdBy }: TestCreatorProps) {
+export default function TestCreator() {
+  const [createdBy, setCreatedBy] = useState("")
   const [test, setTest] = useState<Test>({
     questions: [],
-    createdBy: createdBy || "6795fce2f5a55a767b18523a", // Sample createdBy ID
+    createdBy: createdBy , 
     authorizedIds: [],
     TestTitle: "", // Add initial value for TestTitle
   })
+
+
+  // This would typically come from your auth system
+    
+    
+  useEffect(() => {
+    const userId = Cookies.get("userId_LearnYourSelf")
+    if (userId) {
+      setCreatedBy(userId)
+      setTest((prevTest) => ({ ...prevTest, createdBy: userId }))
+    }
+  }, [])
 
   const addQuestion = () => {
     setTest((prevTest) => ({
@@ -112,6 +126,11 @@ export default function TestCreator({ createdBy }: TestCreatorProps) {
 
   if (test.questions.length === 0) {
     alert("You must add at least one question!")
+    return
+  }
+
+  if (!test.createdBy.trim()) {
+    alert("Required Credentials Missing !")
     return
   }
 

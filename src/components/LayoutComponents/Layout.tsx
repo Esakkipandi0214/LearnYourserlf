@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Cookies from "js-cookie";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const router = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
     const authToken = Cookies.get("auth_token_LearnYourSelf");
@@ -15,6 +15,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
+      router.push("/")
     }
   }, []);
 
