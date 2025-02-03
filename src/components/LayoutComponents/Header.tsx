@@ -67,7 +67,7 @@ const Header: React.FC<SideProps> = ({ isOpen,isLoggedIn, setIsOpen }) => {
             onChange={toggleLanguage}
           />
           <div className="w-14 h-6 relative rounded-full shadow-inner bg-white peer-checked:bg-violet-600">
-          <span className={` font-medium absolute top-1 ${ isEnglish?" text-white text-xs pl-1 left-1 ":"text-gray-700 right-1 text-[9px]"} peer-checked:text-white`}>{isEnglish ? "Eng" : "தமிழ்"}</span>
+          <span className={` font-medium absolute top-1 ${ isEnglish?" text-white  text-[9px] pl-0.5 left-1 ":"text-gray-700 text-xs right-1 pr-1 "} peer-checked:text-white`}>{isEnglish ? "தமிழ்" : "Eng"}</span>
           </div>
           <div className={`absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow ${ isEnglish?" bg-white":"bg-gray-300"} peer-checked:right-0 peer-checked:left-auto`}></div>
         </span>
