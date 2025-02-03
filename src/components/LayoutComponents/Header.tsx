@@ -41,7 +41,7 @@ const Header: React.FC<SideProps> = ({ isOpen,isLoggedIn, setIsOpen }) => {
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
         <Link href="/" legacyBehavior>
-          <a className="text-lg font-semibold">{ isEnglish?"Logo":"சின்னம்"}</a>
+          <a className=" flex gap-0.5 justify-start items-center font-semibold"><h1 className=" text-3xl text-[#50E3C2]">Q</h1><h2 className=" text-lg flex ">wizer</h2></a>
         </Link>
       </div>
 
