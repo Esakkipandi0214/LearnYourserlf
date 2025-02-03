@@ -25,7 +25,7 @@ const Sidebar: React.FC<SideProps> = ({ isOpen }) => {
       {/* Sidebar Wrapper */}
       <div
         className={`lg:block fixed top-20  transition-all duration-600 ease-linear z-20  rounded-3xl h-[85%]   bg-gray-800 text-white ${
-          isOpen ? " block": " hidden" } " w-40   ${ isEnglish?"lg:w-40":" lg:w-48"}  p-6  z-20 ${
+          isOpen ? " block": " hidden" } "    ${ isEnglish?" w-40 lg:w-40":" w-48 lg:w-48"}  p-6  z-20 ${
           isOpen ? "left-4" : "-left-64"
         } ${ isEnglish?"lg:left-7":" lg:left-2"} lg:relative lg:top-10`}
       >

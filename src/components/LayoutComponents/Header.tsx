@@ -74,7 +74,7 @@ const Header: React.FC<SideProps> = ({ isOpen,isLoggedIn, setIsOpen }) => {
       </label>
     </div>
         {isLoggedIn ? (
-          <button onClick={handleClearCookies}>
+          <button className=" flex items-center" onClick={handleClearCookies}>
             <span className={`bg-red-600 text-white ${ isEnglish?"text-sm sm:text-lg px-2 sm:px-4":" sm:px-2 px-1 text-[9px] sm:text-sm"}  sm:px-4  sm:py-2 py-2  rounded-md transition-colors`}>
               {isEnglish?"Logout":"வெளியேறு"}
             </span>
