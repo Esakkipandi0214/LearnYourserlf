@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { Bar, PolarArea } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, LineElement, PointElement, ArcElement, RadialLinearScale } from "chart.js";
+import { useAppContext } from "../../../Providers/AppContext";
 
 ChartJS.register(
   CategoryScale,
@@ -62,6 +63,7 @@ interface TestResult {
 
 const Chart: FC = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const {isEnglish} = useAppContext()
 
   useEffect(() => {
     const handleResize = () => {
@@ -107,14 +109,14 @@ const Chart: FC = () => {
     labels: tests.map((test) => test.testTitle),
     datasets: [
       {
-        label: "Marks Percentage",
+        label:isEnglish ?"Marks Percentage":"மதிப்பெண் சதவீதம்",
         data: tests.map((test) => test.percentage),
         backgroundColor: "#4CAF50", 
         borderColor: "#388E3C",
         borderWidth: 1,
       },
       {
-        label: "Correct Answer Percentage",
+        label: isEnglish ? "Correct Answer Percentage":"சரியான பதில் சதவீதம்",
         data: tests.map((test) => test.correctAnswerPercentage),
         backgroundColor: "#2196F3", 
         borderColor: "#1976D2",
@@ -127,7 +129,7 @@ const Chart: FC = () => {
     labels: tests.map((test) => test.testTitle),
     datasets: [
       {
-        label: "Marks Percentage",
+        label: isEnglish ?"Marks Percentage":"மதிப்பெண் சதவீதம்",
         data: tests.map((test) => test.percentage),
         backgroundColor: [
           "#FF9800", "#FF5722", "#FFEB3B", "#8BC34A", "#2196F3"
@@ -136,7 +138,7 @@ const Chart: FC = () => {
         borderWidth: 1,
       },
       {
-        label: "Correct Answer Percentage",
+        label: isEnglish ? "Correct Answer Percentage":"சரியான பதில் சதவீதம்",
         data: tests.map((test) => test.correctAnswerPercentage),
         backgroundColor: [
           "#9C27B0", "#673AB7", "#3F51B5", "#4CAF50", "#FFC107"
@@ -149,12 +151,12 @@ const Chart: FC = () => {
   
   return (
     <div className="flex flex-col space-y-6">
-      <h2 className=" text-lg sm:text-2xl font-semibold text-gray-900 mb-4">Test Scores Over Time</h2>
+      <h2 className={`text-lg ${ isEnglish?"sm:text-2xl":" sm:text-lg"} font-semibold text-gray-900 mb-4`}>{ isEnglish?"Test Scores":"சோதனை மதிப்பெண்கள்"}</h2>
 
       {isMobile ? (
-        <PolarArea className="w-full" data={mobileChartData} options={{ responsive: true, plugins: { title: { display: true, text: "Test Results" } } }} />
+        <PolarArea className="w-full" data={mobileChartData} options={{ responsive: true, plugins: { title: { display: true, text: isEnglish ? "Test Results":"சோதனை முடிவுகள்" } } }} />
       ) : (
-        <Bar className="w-full" data={chartData} options={{ responsive: true, plugins: { title: { display: true, text: "Test Results" } } }} />
+        <Bar className="w-full" data={chartData} options={{ responsive: true, plugins: { title: { display: true, text: isEnglish ? "Test Results":"சோதனை முடிவுகள்" } } }} />
       )}
 
       {/* Test Details for Mobile */}
@@ -162,11 +164,11 @@ const Chart: FC = () => {
         {tests.map((test) => (
           <div key={test.testTitle} className="bg-white p-4 rounded-lg shadow-md">
             <p className="font-semibold text-gray-800 text-lg">{test.testTitle}</p>
-            <p className="text-sm text-gray-600">Questions: {test.questionCount}</p>
-            <p className="text-sm text-gray-600">Correct Answers: {test.correctAnswers}</p>
-            <p className="text-sm text-gray-600">Avg. Mark: {test.percentage}%</p>
-            <p className="text-sm text-gray-600">Correct Answer %: {test.correctAnswerPercentage}%</p>
-            <p className="text-sm text-gray-600">Test Taken: {new Date(test.submissionDate).toLocaleDateString()}</p>
+            <p className="text-sm text-gray-600">{ isEnglish?"Questions:":"கேள்விகள்:"} {test.questionCount}</p>
+            <p className="text-sm text-gray-600">{ isEnglish?"Correct Answers:":"சரியான பதில்கள்:"} {test.correctAnswers}</p>
+            <p className="text-sm text-gray-600">{isEnglish?"Avg. Mark:":"சராசரி குறி:"} {test.percentage}%</p>
+            <p className="text-sm text-gray-600">{isEnglish?"Correct Answer %:":"சரியான பதில் %:"} {test.correctAnswerPercentage}%</p>
+            <p className="text-sm text-gray-600">{isEnglish?"Test Taken:":"சோதனை எடுக்கப்பட்டது:"} {new Date(test.submissionDate).toLocaleDateString()}</p>
           </div>
         ))}
       </div>

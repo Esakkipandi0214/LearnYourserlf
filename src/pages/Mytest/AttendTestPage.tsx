@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Layout from "@/components/LayoutComponents/Layout";
 import Cookies from "js-cookie";
 import {GlassmorphicLoader} from "@/components/common/LoaderModer";
+import { useAppContext } from "../../../Providers/AppContext";
 
 interface Question {
   text: string;
@@ -27,6 +28,7 @@ export default function AttendTestPage() {
   const router = useRouter();
   const { testId } = router.query;
   const [createdBy, setCreatedBy] = useState(""); // This would typically come from your auth system
+  const {isEnglish} = useAppContext()
 
   useEffect(() => {
     const updateUserId = async () => {
@@ -174,30 +176,30 @@ export default function AttendTestPage() {
             <div className="mt-6 flex justify-center">
               <button
                 onClick={handleSubmit}
-                className="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors"
+                className={`${ isEnglish?"px-6":" px-3 text-xs"} py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors`}
               >
-                Submit Answers
+                { isEnglish?"Submit Answers":"பதில்களை சமர்ப்பிக்கவும்"}
               </button>
             </div>
           </>
         ) : (
           <div className=" space-y-3 sm:space-y-6">
-            <h1 className=" text-lg lg:text-xl font-bold text-indigo-600  sm:mb-6">Test Result</h1>
-            <p className=" text-black text-sm sm:text-lg">Your score is: {score} out of {test?.questions.length}</p>
+            <h1 className=" text-lg lg:text-xl font-bold text-indigo-600  sm:mb-6">{ isEnglish?"Test Result":"சோதனை முடிவுகள்"}</h1>
+            <p className=" text-black text-sm sm:text-lg">{ isEnglish?"Your score is:":"உங்கள் மதிப்பெண்:"} {score} { isEnglish?"out of":"இல் இருந்து"} {test?.questions.length}</p>
             <div className="flex flex-col sm:flex-row sm:gap-4 gap-2  sm:justify-end  sm:items-center">
   <div className="flex items-center gap-2">
     <span className="w-4 h-4 bg-blue-500 rounded-full"></span>
-    <h1 className="text-black bg-blue-200 text-sm lg:text-base px-2 py-1 rounded">Correct Options</h1>
+    <h1 className="text-black bg-blue-200 text-sm lg:text-base px-2 py-1 rounded">{ isEnglish?"Correct Options":"சரியான தேர்வுகள்"}</h1>
   </div>
   
   <div className="flex items-center gap-2">
     <span className="w-4 h-4 bg-green-500  rounded-full"></span>
-    <h1 className="text-black bg-green-200 text-sm  lg:text-base px-2 py-1 rounded">Correct Selection</h1>
+    <h1 className="text-black bg-green-200 text-sm  lg:text-base px-2 py-1 rounded">{isEnglish?"Correct Selection":"சரியான தேர்வு"}</h1>
   </div>
   
   <div className="flex items-center gap-2">
     <span className="w-4 h-4 bg-red-500 rounded-full"></span>
-    <h1 className="text-black bg-red-200 text-sm lg:text-base px-2 py-1 rounded">Incorrect Selection</h1>
+    <h1 className="text-black bg-red-200 text-sm lg:text-base px-2 py-1 rounded">{ isEnglish?"Incorrect Selection":"தவறான தேர்வு"}</h1>
   </div>
 </div>
 

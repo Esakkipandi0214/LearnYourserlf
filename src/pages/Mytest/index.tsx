@@ -6,6 +6,7 @@ import { Trash } from 'lucide-react';
 import Cookies from "js-cookie";
 import {GlassmorphicLoader} from "@/components/common/LoaderModer"
 import { History } from "lucide-react";
+import { useAppContext } from "../../../Providers/AppContext";
 
 interface Question {
   text: string;
@@ -33,6 +34,7 @@ export default function TestsPage() {
   const [createdBy, setCreatedBy] = useState(""); // This would typically come from your auth system
   const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
   const [testToDelete, setTestToDelete] = useState<string | null>(null); // ID of test to delete
+  const {isEnglish} = useAppContext()
 
   useEffect(() => {
     const updateUserId = async () => {
@@ -116,13 +118,13 @@ export default function TestsPage() {
       <div className="space-y-6  sm:p-2 lg:p-6">
         <div className=" flex justify-between items-center">
           <h1 className=" text-lg sm:text-xl flex justify-center items-center font-bold text-[#23486A] ">
-            Question Bank
+            {isEnglish?"Question Bank":"கேள்விப் பகுப்பு"}
           </h1>
           <button
             onClick={() => router.push("/Create-test")}
-            className=" bg-red-600 flex  text-xs sm:text-sm justify-center items-center font-medium px-1 py-2 rounded-lg text-white"
+            className={` bg-red-600 flex  text-xs ${ isEnglish?"sm:text-sm":" sm:text-xs"} justify-center items-center font-medium px-1 py-2 rounded-lg text-white`}
           >
-            Create Test
+            {isEnglish?"Create Test":"சோதனை உருவாக்கு"}
           </button>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -160,27 +162,27 @@ export default function TestsPage() {
                 
               </div>
               <p className="text-white/70">
-                Questions:{" "}
+                {isEnglish?"Questions:":"கேள்விகள்"}{" "}
                 <span className="font-semibold">{test.questions.length}</span>
               </p>
               <div className=" flex items-center gap-3">
                 <button
-                  className="mt-4 p-1 text-xs  lg:text-base  lg:px-2 sm:py-2 lg:py-1  text-black bg-white rounded-md  transition-colors"
+                  className={`mt-4 p-1 text-xs  ${ isEnglish?"lg:text-base":" lg:text-[9px]"}  lg:px-2 sm:py-2 lg:py-1  text-black bg-white rounded-md  transition-colors`}
                   onClick={() => router.push(`/Mytest/EditTest?testId=${test._id}`)}
                 >
-                  Edit Test
+                 { isEnglish ?"Edit Test":"சோதனை புதுப்பி"}
                 </button>
                 <button
-                  className="mt-4 p-1 text-xs lg:text-base lg:px-2 sm:py-2 lg:py-1  text-white bg-red-600 rounded-md  transition-colors"
+                  className={`mt-4 p-1 text-xs ${ isEnglish?"lg:text-base lg:px-2":" lg:px-1 lg:text-[9px"}  sm:py-2 lg:py-1  text-white bg-red-600 rounded-md  transition-colors`}
                   onClick={() => router.push(`/Mytest/AttendTestPage?testId=${test._id}`)}
                 >
-                  Take Test
+                  {isEnglish ? "Take Test":"சோதனை எழுது"}
                 </button>
               </div>
             </div>
           )):
           <div className="text-center text-black p-2 col-span-3">
-      <p className="text-lg font-semibold">No Tests Available</p>
+      <p className="text-lg font-semibold">{ isEnglish?"No Tests Available":"சோதனைகள் கிடைக்கவில்லை"}</p>
     </div>
     }
         </div>
@@ -190,21 +192,21 @@ export default function TestsPage() {
       {isModalOpen && (
         <div className="fixed p-4 sm:p-2 inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white rounded-lg p-6 w-96">
-            <h2 className=" font-semibold text-base sm:text-xl text-gray-800">Are you sure?</h2>
-            <p className="text-gray-600 text-base sm:text-xl mt-2">This action cannot be undone.</p>
+            <h2 className={`font-semibold text-base ${ isEnglish?"sm:text-xl":"sm:text-base"} text-gray-800`}>{isEnglish?"Are you sure?":"நீங்கள் நிச்சயமாக இருக்கிறீர்களா?"}</h2>
+            <p className={`text-gray-600 text-base ${ isEnglish?"sm:text-xl":" sm:text-base"} mt-2`}>{isEnglish?"This action cannot be undone.":"இந்த செயலை பின்வாங்க முடியாது"}</p>
             <div className="flex gap-4 mt-4">
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="sm:px-4 px-2 text-sm sm:text-xl py-2 bg-gray-300 text-gray-800 rounded-md"
+                className={` ${ isEnglish?"sm:px-4 sm:text-xl":" sm:text-base sm:px-2 "} px-2 text-sm  py-2 bg-gray-300 text-gray-800 rounded-md`}
               >
-                Cancel
+                { isEnglish?"Cancel":"ரத்து செய்"}
               </button>
               <button
                 onClick={handleDelete}
                 disabled={isDeleting}
-                className="sm:px-4 px-2 text-sm sm:text-xl py-2 bg-red-600 text-white rounded-md"
+                className={` ${ isEnglish?"sm:px-4 sm:text-xl":" sm:text-base sm:px-2"} px-2 text-sm  py-2 bg-red-600 text-white rounded-md`}
               >
-                {isDeleting ? "Deleting..." : "Delete"}
+                {isDeleting ? isEnglish?"Deleting...":"அழிக்கப்படுகிறது" : isEnglish? "Delete":"அழிக்கவும்"}
               </button>
             </div>
           </div>

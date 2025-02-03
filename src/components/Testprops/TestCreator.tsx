@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { PlusCircle, Trash2 } from "lucide-react"
 import Cookies from "js-cookie"
+import { useAppContext } from "../../../Providers/AppContext"
 
 interface Question {
   text: string
@@ -30,6 +31,7 @@ interface Test {
 
 export default function TestCreator() {
   const [createdBy, setCreatedBy] = useState("")
+  const {isEnglish} = useAppContext()
   const [test, setTest] = useState<Test>({
     questions: [],
     createdBy: createdBy , 
@@ -194,16 +196,16 @@ export default function TestCreator() {
 
   return (
     <form onSubmit={handleSubmit} className=" space-y-5 sm:space-y-8  p-2 sm:p-6">
-      <h1 className=" text-lg sm:text-2xl font-bold text-black sm:mb-6">Create a Test</h1>
+      <h1 className=" text-lg sm:text-2xl font-bold text-black sm:mb-6">{ isEnglish?"Create a Test":"சோதனையை உருவாக்கு"}</h1>
 
       {/* Test Title Input */}
       <div className="space-y-2">
-        <Label htmlFor="testTitle" className="text-black">Test Title</Label>
+        <Label htmlFor="testTitle" className="text-black">{ isEnglish?"Test Title":"சோதனை தலைப்பு"}</Label>
         <Input
           id="testTitle"
           value={test.TestTitle}
           onChange={(e) => setTest({ ...test, TestTitle: e.target.value })}
-          placeholder="Enter the test title"
+          placeholder={isEnglish?"Enter the test title":"சோதனை தலைப்பை உள்ளிடவும்"}
           className="text-black"
         />
       </div>
@@ -211,7 +213,7 @@ export default function TestCreator() {
       {test.questions.map((question, questionIndex) => (
         <div key={questionIndex} className="border p-4 rounded-md space-y-4">
           <div className="flex justify-between items-center">
-            <h2 className="text-lg font-semibold text-black">Question {questionIndex + 1}</h2>
+            <h2 className="text-lg font-semibold text-black">{ isEnglish?"Question":"கேள்வி"} {questionIndex + 1}</h2>
             <Button type="button" variant="destructive" size="icon" onClick={() => removeQuestion(questionIndex)}>
               <Trash2 className="h-4 w-4" />
             </Button>
@@ -220,7 +222,7 @@ export default function TestCreator() {
           <Textarea
             value={question.text}
             onChange={(e) => updateQuestion(questionIndex, "text", e.target.value)}
-            placeholder="Enter your question here"
+            placeholder={ isEnglish?"Enter your question here":"உங்கள் கேள்வியை இங்கு உள்ளிடவும்"}
             className="text-black"
           />
 
@@ -235,7 +237,7 @@ export default function TestCreator() {
                 <Input
                   value={option}
                   onChange={(e) => updateOption(questionIndex, optionIndex, e.target.value)}
-                  placeholder={`Option ${optionIndex + 1}`}
+                  placeholder={`${ isEnglish?"Option":"தேர்வு"} ${optionIndex + 1}`}
                   className="text-black"
                 />
               </div>
@@ -243,7 +245,7 @@ export default function TestCreator() {
           </div>
 
           <Button type="button" className="text-black" variant="outline" size="sm" onClick={() => addOption(questionIndex)}>
-            Add Option
+           { isEnglish?" Add Option":"தேர்வை சேர்க்கவும்"}
           </Button>
 
           <div className="flex items-center space-x-2">
@@ -253,18 +255,18 @@ export default function TestCreator() {
               onCheckedChange={(checked: boolean) => updateQuestion(questionIndex, "isMultipleChoice", checked)}
             />
             <Label className="text-black" htmlFor={`multipleChoice-${questionIndex}`}>
-              Allow multiple correct answers
+              { isEnglish?"Allow multiple correct answers":"பல சரியான பதில்களை அனுமதிக்கவும்"}
             </Label>
           </div>
         </div>
       ))}
 
       <Button type="button" onClick={addQuestion} className="w-full">
-        <PlusCircle className="mr-2 h-4 w-4" /> Add Question
+        <PlusCircle className="mr-2 h-4 w-4" /> { isEnglish?"Add Question":"கேள்வி சேர்க்கவும்"}
       </Button>
 
       <Button type="submit" className="w-full">
-        Create Test
+        { isEnglish?"Create Test":"சோதனையை உருவாக்கு"}
       </Button>
     </form>
   )
