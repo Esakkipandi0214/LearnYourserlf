@@ -34,22 +34,22 @@ export default function AddQuestion() {
 
   const validateQuestion = () => {
     if (!text.trim()) {
-      alert("Question text is required!");
+      alert( isEnglish?"Question text is required!":"கேள்வி உரை தேவை!");
       return false;
     }
 
     if (options.length < 2) {
-      alert("Each question must have at least two options!");
+      alert(isEnglish?"Each question must have at least two options!":"ஒவ்வொரு கேள்விக்கும் குறைந்தது இரண்டு விருப்பங்கள் இருக்க வேண்டும்!");
       return false;
     }
 
     if (options.some((option) => !option.trim())) {
-      alert("All options must be filled!");
+      alert(isEnglish?"All options must be filled!":"அனைத்து விருப்பங்களும் நிரப்பப்பட வேண்டும்!");
       return false;
     }
 
     if (correctAnswers.length === 0) {
-      alert("At least one correct answer is required!");
+      alert(isEnglish?"At least one correct answer is required!":"குறைந்தபட்சம் ஒரு சரியான பதில் தேவை!");
       return false;
     }
 
@@ -70,10 +70,11 @@ export default function AddQuestion() {
         }),
       });
       if (!response.ok) throw new Error("Failed to add question");
-      alert("Question added successfully!");
+      alert(isEnglish?"Question added successfully!":"கேள்வி வெற்றிகரமாக சேர்க்கப்பட்டது!");
       router.push("/Mytest");
     } catch (error) {
       console.error("Error adding question:", error);
+      alert(isEnglish?"Failed to Add Question !":"கேள்வியைச் சேர்ப்பதில் தோல்வி!")
     }
     setSaving(false);
   };

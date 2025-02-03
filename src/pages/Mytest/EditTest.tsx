@@ -114,37 +114,37 @@ export default function EditTestPage() {
   
       // Validate the form
   if (!test.TestTitle) {
-    alert("Test title is required!")
+    alert( isEnglish?"Test title is required!":"தேர்வு தலைப்பு தேவை!")
     return
   }
 
   if (test.questions.length === 0) {
-    alert("You must add at least one question!")
+    alert( isEnglish?"You must add at least one question!":"நீங்கள் குறைந்தபட்சம் ஒரு கேள்வியைச் சேர்க்க வேண்டும்!")
     return
   }
 
   for (const question of test.questions) {
     // Check if the question text is filled
     if (!question.text.trim()) {
-      alert("Question text is required for all questions!")
+      alert( isEnglish?"Question text is required for all questions!":"அனைத்து கேள்விகளுக்கும் கேள்வி உரை தேவை!")
       return
     }
 
     // Check if there are at least two options
     if (question.options.length < 2) {
-      alert(`Question ${test.questions.indexOf(question) + 1} must have at least two options!`)
+      alert( isEnglish?`Question ${test.questions.indexOf(question) + 1} must have at least two options!`:`கேள்வி ${test.questions.indexOf(question) + 1} குறைந்தது இரண்டு விருப்பங்கள் இருக்க வேண்டும்!`)
       return
     }
 
     // Check if all options are filled
     if (question.options.some(option => !option.trim())) {
-      alert(`All options must be filled for Question ${test.questions.indexOf(question) + 1}!`)
+      alert( isEnglish?`All options must be filled for Question ${test.questions.indexOf(question) + 1}!`:`கேள்விக்கான அனைத்து விருப்பங்களும் நிரப்பப்பட வேண்டும் ${test.questions.indexOf(question) + 1}!`)
       return
     }
 
     // Check if there is at least one correct answer
     if (question.correctAnswers.length === 0) {
-      alert(`At least one correct answer is required for Question ${test.questions.indexOf(question) + 1}!`)
+      alert(isEnglish?`At least one correct answer is required for Question ${test.questions.indexOf(question) + 1}!`:`கேள்விக்கு குறைந்தபட்சம் ஒரு சரியான பதில் தேவை ${test.questions.indexOf(question) + 1}!`)
       return
     }
   }
@@ -175,10 +175,11 @@ export default function EditTestPage() {
 
       if (!response.ok) throw new Error("Failed to save test");
 
-      alert("Test updated successfully!");
+      alert( isEnglish?"Test updated successfully!":"சோதனை வெற்றிகரமாக புதுப்பிக்கப்பட்டது!");
 
     } catch (error) {
       console.error("Error saving test:", error);
+      alert( isEnglish?"Failed to update Question.":"கேள்வியைப் புதுப்பிக்க முடியவில்லை.")
     }
 
     setSaving(false);
@@ -203,11 +204,11 @@ export default function EditTestPage() {
         throw new Error('Failed to delete test');
       }
 
-      alert('Test deleted successfully!');
+      alert( isEnglish?'Test deleted successfully!':"சோதனை வெற்றிகரமாக நீக்கப்பட்டது!");
       setIsModalOpen(false); // Close the modal after deletion
     } catch (error) {
       console.error('Error deleting test:', error);
-      alert('Error deleting test');
+      alert( isEnglish?'Failed to delete test.':"சோதனையை நீக்க முடியவில்லை.");
       setIsModalOpen(false); // Close the modal if there's an error
     } finally {
       setIsDeleting(false);

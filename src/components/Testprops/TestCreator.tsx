@@ -122,42 +122,42 @@ export default function TestCreator() {
 
        // Validate the form
   if (!test.TestTitle) {
-    alert("Test title is required!")
+    alert( isEnglish?"Test title is required!":"தேர்வு தலைப்பு தேவை!")
     return
   }
 
   if (test.questions.length === 0) {
-    alert("You must add at least one question!")
+    alert( isEnglish?"You must add at least one question!":"நீங்கள் குறைந்தபட்சம் ஒரு கேள்வியைச் சேர்க்க வேண்டும்!")
     return
   }
 
   if (!test.createdBy.trim()) {
-    alert("Required Credentials Missing !")
+    alert( isEnglish?"Required Credentials Missing !":"தேவையான சான்றுகள் காணவில்லை!")
     return
   }
 
   for (const question of test.questions) {
     // Check if the question text is filled
     if (!question.text.trim()) {
-      alert("Question text is required for all questions!")
+      alert( isEnglish?"Question text is required for all questions!":"அனைத்து கேள்விகளுக்கும் கேள்வி உரை தேவை!")
       return
     }
 
     // Check if there are at least two options
     if (question.options.length < 2) {
-      alert(`Question ${test.questions.indexOf(question) + 1} must have at least two options!`)
+      alert( isEnglish?`Question ${test.questions.indexOf(question) + 1} must have at least two options!`:`கேள்வி ${test.questions.indexOf(question) + 1} குறைந்தது இரண்டு விருப்பங்கள் இருக்க வேண்டும்!`)
       return
     }
 
     // Check if all options are filled
     if (question.options.some(option => !option.trim())) {
-      alert(`All options must be filled for Question ${test.questions.indexOf(question) + 1}!`)
+      alert( isEnglish?`All options must be filled for Question ${test.questions.indexOf(question) + 1}!`:`கேள்விக்கான அனைத்து விருப்பங்களும் நிரப்பப்பட வேண்டும் ${test.questions.indexOf(question) + 1}!`)
       return
     }
 
     // Check if there is at least one correct answer
     if (question.correctAnswers.length === 0) {
-      alert(`At least one correct answer is required for Question ${test.questions.indexOf(question) + 1}!`)
+      alert(isEnglish?`At least one correct answer is required for Question ${test.questions.indexOf(question) + 1}!`:`கேள்விக்கு குறைந்தபட்சம் ஒரு சரியான பதில் தேவை ${test.questions.indexOf(question) + 1}!`)
       return
     }
   }
@@ -179,7 +179,7 @@ export default function TestCreator() {
 
       const result = await response.json()
       console.log("Test created successfully:", result)
-      alert("Test created successfully!")
+      alert(isEnglish?"Test created successfully!":"சோதனை வெற்றிகரமாக உருவாக்கப்பட்டது!")
 
       // Reset form after successful submission
       setTest({
@@ -190,7 +190,7 @@ export default function TestCreator() {
       })
     } catch (error) {
       console.error("Error creating test:", error)
-      alert("Error creating test. Please try again.")
+      alert(isEnglish?"Failed to create test. Please try again.":"சோதனையை உருவாக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.")
     }
   }
 
